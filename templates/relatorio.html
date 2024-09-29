@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Visitantes do Dia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Relatório de Visitantes para o dia {{ data }}</h1>
+
+        {% if visitantes %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Empresa ou Particular</th>
+                        <th>Setor</th>
+                        <th>Horário de Chegada</th>
+                        <th>Horário de Saída</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for visitante in visitantes %}
+                    <tr>
+                        <td>{{ visitante.nome }}</td>
+                        <td>{{ visitante.cpf }}</td>
+                        <td>{{ visitante.empresa_ou_particular }}</td>
+                        <td>{{ visitante.setor }}</td>
+                        <td>{{ visitante.horario_chegada }}</td>
+                        <td>{{ visitante.horario_saida or 'Ainda no local' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+            Não há visitantes registrados para essa data.
+        </div>
+        {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

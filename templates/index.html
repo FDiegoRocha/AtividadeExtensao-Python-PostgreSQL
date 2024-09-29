@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Visitantes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Controle de Visitantes {{ data }}</h1>
+        <div class="text-center mb-4">
+            <a href="/cadastrar" class="btn btn-primary">Cadastrar Visitante</a>
+            <a href="/relatorio" class="btn btn-secondary">Emitir Relatório de Visitantes</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Empresa/Particular</th>
+                        <th>Setor</th>
+                        <th>Horário de Chegada</th>
+                        <th>Horário de Saída</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for visitante in visitantes %}
+                    <tr>
+                        <td>{{ visitante.nome }}</td>
+                        <td>{{ visitante.cpf }}</td>
+                        <td>{{ visitante.empresa_ou_particular }}</td>
+                        <td>{{ visitante.setor }}</td>
+                        <td>{{ visitante.horario_chegada }}</td>
+                        <td>{{ visitante.horario_saida if visitante.horario_saida else 'Ainda no local' }}</td>
+                        <td>
+                            {% if not visitante.horario_saida %}
+                            <a href="/sair/{{ visitante.id }}" class="btn btn-warning btn-sm">Registrar Saída</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
