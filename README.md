@@ -9,14 +9,14 @@ Esse projeto se trata de uma atividade de extensão. A ideia aqui é abordar um 
 - PostgreSQL versão 16.4 ou superior
 
 ### Instalação dos Pacotes Necessários (terminal)
-´´´
+```
 pip install Flask Flask-SQLAlchemy psycopg2 datetime
-´´´
+```
 ### Configuração (criação) do Banco de Dados PostgreSQL (terminal)
-´´´
+```
 python db.py
-´´´
+```
 ### Inicie o servidor (terminal)
-´´´
+```
 python app.py
-´´´
+```
